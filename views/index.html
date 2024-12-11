@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>BMI calculator</h1>
+    <form action="/result" method="POST">
+        <div>
+            <label for="weight">Enter your weight (kg):</label>
+            <input type="text" id="weight" name="weight" required>
+        </div>
+
+        <div>
+            <label for="height">Enter your height (sm):</label>
+            <input type="text" id="height" name="height" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+        const weight = document.getElementById("weight").value;
+        const height = document.getElementById("height").value;
+
+        let errors = [];
+        if (isNaN(weight)) {
+            errors.push("Please enter weight in numbers.");
+        }
+        if(weight <= 0){
+            errors.push("Please enter non-negative weight.");
+        }
+        if (isNaN(height)) {
+            errors.push("Please enter height in numbers.");
+        }
+        if(height <= 0){
+            errors.push("Please enter non-negative height.");
+        }
+
+        if (errors.length > 0) {
+            event.preventDefault();
+            alert(errors.join("\n"));
+        }
+        });
+    </script>
+</body>
+</html>
